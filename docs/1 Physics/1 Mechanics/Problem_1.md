@@ -29,19 +29,18 @@
 
  ## 1. Horizontal Motion
 
-
 In projectile motion, the horizontal velocity remains constant (neglecting air resistance). The horizontal displacement is given by:
 
 $$
- xv_ \cos(\theta) t
+ x= v_0 \cos(\theta) t
  $$
 
 
  where:
 
- $v_0$ is the initial velocity,
+ -$v_0$ is the initial velocity,
 
- $\thetas is the launch angle,
+ -$\thetas is the launch angle,
 
- $t$ is time.
+ -$t$ is time.
 
