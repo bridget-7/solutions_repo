@@ -46,5 +46,3 @@ def plot_range_vs_angle(v0_values, g_values):
 v0_values = [10, 20, 30]  # Different initial velocities
 g_values = [9.81]         # Standard gravity
 plot_range_vs_angle(v0_values, g_values)
-
-
