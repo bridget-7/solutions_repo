@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Problem - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Problem";
         var mkdocs_page_input_path = "1 Physics/1 Mechanics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,7 +48,7 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Problem 1</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem</a>
 <ul class="current">
 </ul>
 </li>
@@ -163,7 +163,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">1 Mechanics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Problem</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -171,7 +171,51 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-2">Problem 2</h1>
+<h1 id="problem">Problem</h1>
+<p>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp</p>
+<h1 id="define-the-forced-damped-pendulum-equations">Define the forced damped pendulum equations</h1>
+<p>def pendulum(t, y, q, F, omega):
+    theta, omega_dot = y
+    dtheta_dt = omega_dot
+    domega_dt = -q * omega_dot - np.sin(theta) + F * np.cos(omega * t)
+    return [dtheta_dt, domega_dt]</p>
+<h1 id="parameters">Parameters</h1>
+<p>t_max = 100  # Max time
+q = 0.5  # Damping coefficient
+F = 1.2  # Driving force amplitude
+omega = 2/3  # Driving frequency</p>
+<h1 id="initial-conditions">Initial conditions</h1>
+<p>y0 = [0.2, 0]  # Initial angle and angular velocity</p>
+<h1 id="solve-the-ode">Solve the ODE</h1>
+<p>t_eval = np.linspace(0, t_max, 5000)
+sol = solve_ivp(pendulum, [0, t_max], y0, args=(q, F, omega), t_eval=t_eval, method='RK45')</p>
+<p>theta = sol.y[0]
+omega_dot = sol.y[1]</p>
+<h1 id="phase-portrait">Phase portrait</h1>
+<p>plt.figure(figsize=(8, 6))
+plt.plot(theta, omega_dot, '.', markersize=0.5)
+plt.xlabel("Theta (rad)")
+plt.ylabel("Angular velocity (rad/s)")
+plt.title("Phase Portrait of the Forced Damped Pendulum")
+plt.grid()
+plt.show()</p>
+<h1 id="poincare-section-sampling-at-integer-multiples-of-driving-period">Poincaré section (sampling at integer multiples of driving period)</h1>
+<p>T = (2 * np.pi) / omega  # Driving period
+poincare_theta = []
+poincare_omega = []</p>
+<p>for i in range(len(t_eval)):
+    if np.isclose(t_eval[i] % T, 0, atol=0.05):
+        poincare_theta.append(theta[i])
+        poincare_omega.append(omega_dot[i])</p>
+<p>plt.figure(figsize=(8, 6))
+plt.plot(poincare_theta, poincare_omega, 'ro', markersize=2)
+plt.xlabel("Theta (rad)")
+plt.ylabel("Angular velocity (rad/s)")
+plt.title("Poincaré Section of the Forced Damped Pendulum")
+plt.grid()
+plt.show()</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
