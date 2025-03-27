@@ -1,4 +1,3 @@
-# Problem 
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -19,19 +18,22 @@ omega = 2/3  # Driving frequency
 # Initial conditions
 y0 = [0.2, 0]  # Initial angle and angular velocity
 
-# Solve the ODE
+# Time points for evaluation
 t_eval = np.linspace(0, t_max, 5000)
+
+# Solve the ODE using Runge-Kutta method
 sol = solve_ivp(pendulum, [0, t_max], y0, args=(q, F, omega), t_eval=t_eval, method='RK45')
 
 theta = sol.y[0]
 omega_dot = sol.y[1]
 
-# Phase portrait
+# Phase portrait plot
 plt.figure(figsize=(8, 6))
-plt.plot(theta, omega_dot, '.', markersize=0.5)
+plt.plot(theta, omega_dot, '.', markersize=0.5, label='Phase Space')
 plt.xlabel("Theta (rad)")
 plt.ylabel("Angular velocity (rad/s)")
 plt.title("Phase Portrait of the Forced Damped Pendulum")
+plt.legend()
 plt.grid()
 plt.show()
 
@@ -45,10 +47,12 @@ for i in range(len(t_eval)):
         poincare_theta.append(theta[i])
         poincare_omega.append(omega_dot[i])
 
+# Poincaré section plot
 plt.figure(figsize=(8, 6))
-plt.plot(poincare_theta, poincare_omega, 'ro', markersize=2)
+plt.plot(poincare_theta, poincare_omega, 'ro', markersize=2, label='Poincaré Points')
 plt.xlabel("Theta (rad)")
 plt.ylabel("Angular velocity (rad/s)")
 plt.title("Poincaré Section of the Forced Damped Pendulum")
+plt.legend()
 plt.grid()
 plt.show()
