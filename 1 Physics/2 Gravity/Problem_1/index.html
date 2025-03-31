@@ -171,7 +171,6 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
 <p>import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -183,6 +182,8 @@ M = 5.972e24      # Mass of the Earth (kg)</p>
 <p>def orbit_eq(t, y):
     x, vx, y, vy = y
     r = np.sqrt(x<strong>2 + y</strong>2)
+    if r == 0:
+        return [vx, 0, vy, 0]  # Prevent division by zero
     ax = -G * M * x / r<strong>3
     ay = -G * M * y / r</strong>3
     return [vx, ax, vy, ay]</p>
@@ -217,8 +218,8 @@ plt.grid()
 plt.show()</p>
 <h1 id="create-an-animation-of-the-orbit">Create an animation of the orbit</h1>
 <p>fig, ax = plt.subplots(figsize=(6,6))
-ax.set_xlim(-radii[-1], radii[-1])
-ax.set_ylim(-radii[-1], radii[-1])
+ax.set_xlim(-radii[-1]<em>1.2, radii[-1]</em>1.2)
+ax.set_ylim(-radii[-1]<em>1.2, radii[-1]</em>1.2)
 ax.set_xlabel("X Position (m)")
 ax.set_ylabel("Y Position (m)")
 ax.set_title("Circular Orbit Simulation")</p>
