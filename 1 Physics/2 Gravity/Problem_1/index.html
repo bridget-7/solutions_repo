@@ -172,6 +172,75 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
+<p>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+import matplotlib.animation as animation</p>
+<h1 id="constants">Constants</h1>
+<p>G = 6.67430e-11  # Gravitational constant (m^3 kg^-1 s^-2)
+M = 5.972e24      # Mass of the Earth (kg)</p>
+<h1 id="function-to-compute-derivatives">Function to compute derivatives</h1>
+<p>def orbit_eq(t, y):
+    x, vx, y, vy = y
+    r = np.sqrt(x<strong>2 + y</strong>2)
+    ax = -G * M * x / r<strong>3
+    ay = -G * M * y / r</strong>3
+    return [vx, ax, vy, ay]</p>
+<h1 id="function-to-compute-orbital-period-and-trajectory">Function to compute orbital period and trajectory</h1>
+<p>def compute_orbit(r0):
+    v0 = np.sqrt(G * M / r0)  # Circular orbit velocity
+    y0 = [r0, 0, 0, v0]
+    t_span = [0, 2 * np.pi * r0 / v0 * 2]  # Ensure full orbit is captured
+    sol = solve_ivp(orbit_eq, t_span, y0, t_eval=np.linspace(0, t_span[1], 1000))</p>
+<pre><code># Find period using zero crossing of x-axis (returning to initial position)
+x_positions = sol.y[0]
+zero_crossings = np.where(np.diff(np.sign(x_positions - r0)))[0]
+
+if len(zero_crossings) &gt; 1:
+    T = sol.t[zero_crossings[1]] - sol.t[zero_crossings[0]]
+else:
+    T = t_span[1]
+
+return T, sol.y[0], sol.y[2]
+</code></pre>
+<h1 id="simulating-for-different-radii">Simulating for different radii</h1>
+<p>radii = np.linspace(7e6, 4.2e7, 10)  # Various altitudes
+periods = np.array([compute_orbit(r)[0] for r in radii])</p>
+<h1 id="plotting-t2-vs-r3">Plotting T^2 vs. r^3</h1>
+<p>plt.figure(figsize=(8,6))
+plt.plot(radii<strong>3, periods</strong>2, 'o-', label='<span class="arithmatex">\(T^2\)</span> vs. <span class="arithmatex">\(r^3\)</span>')
+plt.xlabel('<span class="arithmatex">\(r^3\)</span> (m^3)')
+plt.ylabel('<span class="arithmatex">\(T^2\)</span> (s^2)')
+plt.title("Verification of Kepler's Third Law")
+plt.legend()
+plt.grid()
+plt.show()</p>
+<h1 id="create-an-animation-of-the-orbit">Create an animation of the orbit</h1>
+<p>fig, ax = plt.subplots(figsize=(6,6))
+ax.set_xlim(-radii[-1], radii[-1])
+ax.set_ylim(-radii[-1], radii[-1])
+ax.set_xlabel("X Position (m)")
+ax.set_ylabel("Y Position (m)")
+ax.set_title("Circular Orbit Simulation")</p>
+<p>planet, = ax.plot([], [], 'bo', markersize=8, label="Orbiting Body")
+trajectory, = ax.plot([], [], 'g-', linewidth=1, label="Orbit Path")
+ax.legend()</p>
+<h1 id="get-orbit-data-for-animation">Get orbit data for animation</h1>
+<p>r0 = radii[5]  # Select a middle radius for visualization
+T, x_vals, y_vals = compute_orbit(r0)</p>
+<p>def init():
+    planet.set_data([], [])
+    trajectory.set_data([], [])
+    return planet, trajectory</p>
+<p>def update(frame):
+    planet.set_data(x_vals[frame], y_vals[frame])
+    trajectory.set_data(x_vals[:frame], y_vals[:frame])
+    return planet, trajectory</p>
+<p>ani = animation.FuncAnimation(fig, update, frames=len(x_vals), init_func=init, blit=True, interval=10)
+plt.show()</p>
+<h1 id="ensure-script-runs-properly-in-visual-studio">Ensure script runs properly in Visual Studio</h1>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    print("Simulation completed. Plot and animation displayed.")</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
