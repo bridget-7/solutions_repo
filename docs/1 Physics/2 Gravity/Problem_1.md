@@ -1,4 +1,3 @@
-# Problem 1
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -12,6 +11,8 @@ M = 5.972e24      # Mass of the Earth (kg)
 def orbit_eq(t, y):
     x, vx, y, vy = y
     r = np.sqrt(x**2 + y**2)
+    if r == 0:
+        return [vx, 0, vy, 0]  # Prevent division by zero
     ax = -G * M * x / r**3
     ay = -G * M * y / r**3
     return [vx, ax, vy, ay]
@@ -50,8 +51,8 @@ plt.show()
 
 # Create an animation of the orbit
 fig, ax = plt.subplots(figsize=(6,6))
-ax.set_xlim(-radii[-1], radii[-1])
-ax.set_ylim(-radii[-1], radii[-1])
+ax.set_xlim(-radii[-1]*1.2, radii[-1]*1.2)
+ax.set_ylim(-radii[-1]*1.2, radii[-1]*1.2)
 ax.set_xlabel("X Position (m)")
 ax.set_ylabel("Y Position (m)")
 ax.set_title("Circular Orbit Simulation")
