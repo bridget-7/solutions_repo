@@ -66,7 +66,7 @@ R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
 
 Below is a Python script that simulates projectile motion and visualizes the range as a function of the angle of projection.
 
-(image.png)
+([alt text](image-1.png))
 
 ### Graphical Representation
 
