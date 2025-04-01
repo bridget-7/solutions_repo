@@ -66,33 +66,7 @@ R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
 
 Below is a Python script that simulates projectile motion and visualizes the range as a function of the angle of projection.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-def projectile_motion(v0, theta, g=9.81):
-    theta_rad = np.radians(theta)
-    T = (2 * v0 * np.sin(theta_rad)) / g
-    R = v0 * np.cos(theta_rad) * T
-    return R
-
-# Parameters
-v0 = 50  # Initial velocity in m/s
-angles = np.linspace(0, 90, 180)  # Angles from 0 to 90 degrees
-ranges = [projectile_motion(v0, theta) for theta in angles]
-
-# Plotting
-plt.figure(figsize=(10, 6))
-plt.plot(angles, ranges, label=f'Initial Velocity = {v0} m/s')
-plt.title('Projectile Range vs. Angle of Projection')
-plt.xlabel('Angle of Projection (degrees)')
-plt.ylabel('Range (meters)')
-plt.grid()
-plt.axhline(0, color='black', lw=0.5, ls='--')
-plt.axvline(45, color='red', lw=0.5, ls='--', label='Optimal Angle (45°)')
-plt.legend()
-plt.show()
-```
+(image.png)
 
 ### Graphical Representation
 
@@ -109,4 +83,3 @@ The idealized model assumes no air resistance and a flat surface. In reality, fa
 This comprehensive analysis of projectile motion not only elucidates fundamental physics principles but also demonstrates the model's versatility across various applications.
 ```
 
-You can copy and paste this Markdown document into Visual Studio or any Markdown editor to view the formatted text.
