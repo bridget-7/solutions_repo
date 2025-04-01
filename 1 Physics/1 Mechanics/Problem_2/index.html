@@ -285,43 +285,7 @@ At resonance, the amplitude of oscillation can become significantly larger, lead
 <h2 id="4-implementation">4. Implementation</h2>
 <h3 id="python-simulation">Python Simulation</h3>
 <p>Below is a Python script that simulates the motion of a forced damped pendulum and visualizes its behavior under various conditions.</p>
-<pre><code class="language-python">import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-def forced_damped_pendulum(t, y, beta, g, L, A, omega):
-    theta, omega = y
-    dydt = [omega, -2*beta*omega - (g/L) * np.sin(theta) + A * np.cos(omega * t)]
-    return dydt
-
-# Parameters
-beta = 0.1  # Damping coefficient
-g = 9.81    # Acceleration due to gravity (m/s^2)
-L = 1.0     # Length of the pendulum (m)
-A = 1.0     # Amplitude of the driving force
-omega = 1.5 # Driving frequency (rad/s)
-
-# Initial conditions
-theta0 = 0.1  # Initial angle (radians)
-omega0 = 0.0  # Initial angular velocity (rad/s)
-y0 = [theta0, omega0]
-
-# Time span for the simulation
-t_span = (0, 50)  # Time from 0 to 50 seconds
-t_eval = np.linspace(t_span[0], t_span[1], 1000)
-
-# Solve the differential equation
-solution = solve_ivp(forced_damped_pendulum, t_span, y0, args=(beta, g, L, A, omega), t_eval=t_eval)
-
-# Plotting the results
-plt.figure(figsize=(12, 6))
-plt.plot(solution.t, solution.y[0], label='Angular Displacement (θ)')
-plt.title('Forced Damped Pendulum Motion')
-plt.xlabel('Time (s)')
-plt.ylabel('Angular Displacement (radians)')
-plt.grid()
-plt.legend()
-plt.show()
+<pre><code class="language-python">![alt text](image-2.png)
 </code></pre>
 <h3 id="graphical-representations">Graphical Representations</h3>
 <p>The above code will generate a plot of the angular displacement of the pendulum over time. By varying the parameters <span class="arithmatex">\( \beta \)</span>, <span class="arithmatex">\( A \)</span>, and <span class="arithmatex">\( \omega \)</span>, one can observe different behaviors, including resonance and chaotic motion.</p>
