@@ -1,4 +1,3 @@
-```markdown
 # Projectile Motion: A Comprehensive Analysis
 
 ## 1. Theoretical Foundation
