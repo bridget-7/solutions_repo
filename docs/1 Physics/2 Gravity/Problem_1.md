@@ -112,7 +112,6 @@ To simulate circular orbits and verify Kepler's Third Law, we can implement a Py
 Kepler's Third Law provides a fundamental understanding of the relationship between orbital period and radius for celestial bodies. This relationship extends beyond circular orbits to elliptical orbits, where the semi-major axis plays a similar role. The implications of this law are vast, influencing our understanding of planetary systems, satellite dynamics, and the gravitational interactions that govern the cosmos.
 ```
 
-You can copy and paste this Markdown document into Visual Studio or any Markdown editor to view it properly formatted. The Python script included can be run in a Python environment with the necessary libraries installed (NumPy and Matplotlib) to visualize the relationship described by Kepler's Third Law.
 
 
 [def]: image.png
