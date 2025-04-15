@@ -105,33 +105,7 @@ The planets in our Solar System also follow Kepler's Third Law. For example, Ear
 
 To simulate circular orbits and verify Kepler's Third Law, we can implement a Python script. Below is a simple example using Python with Matplotlib for visualization.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11  # Gravitational constant
-M_sun = 1.989e30  # Mass of the Sun in kg
-
-# Function to calculate orbital period
-def orbital_period(radius):
-    return 2 * np.pi * np.sqrt(radius**3 / (G * M_sun))
-
-# Radii in meters (1 AU = 1.496e11 m)
-radii = np.array([1.496e11, 2.279e11, 3.524e11])  # Earth, Mars, Jupiter
-periods = orbital_period(radii)
-
-# Plotting
-plt.figure(figsize=(10, 6))
-plt.scatter(radii, periods, color='blue')
-plt.xscale('log')
-plt.yscale('log')
-plt.title("Kepler's Third Law: Orbital Period vs. Orbital Radius")
-plt.xlabel("Orbital Radius (m)")
-plt.ylabel("Orbital Period (s)")
-plt.grid(True)
-plt.show()
-```
+![alt text][def]
 
 ## Conclusion
 
@@ -139,3 +113,6 @@ Kepler's Third Law provides a fundamental understanding of the relationship betw
 ```
 
 You can copy and paste this Markdown document into Visual Studio or any Markdown editor to view it properly formatted. The Python script included can be run in a Python environment with the necessary libraries installed (NumPy and Matplotlib) to visualize the relationship described by Kepler's Third Law.
+
+
+[def]: image.png
