@@ -91,7 +91,7 @@ The forced damped pendulum model has several real-world applications, including:
 Below is a Python script that simulates the motion of a forced damped pendulum and visualizes its behavior under various conditions.
 
 
-([alt text](image-2.png))
+![alt text](image-2.png)
 
 
 ### Graphical Representations

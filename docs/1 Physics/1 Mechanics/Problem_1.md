@@ -62,12 +62,11 @@ R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
    where \( C_d \) is the drag coefficient, \( \rho \) is the air density, \( A \) is the cross-sectional area, and \( v \) is the velocity.
 
 ## 4. Implementation
-
 ### Python Simulation
 
 Below is a Python script that simulates projectile motion and visualizes the range as a function of the angle of projection.
 
-([alt text](image-1.png))
+![alt text](image-1.png)
 
 ### Graphical Representation
 

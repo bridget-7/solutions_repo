@@ -105,7 +105,7 @@ The planets in our Solar System also follow Kepler's Third Law. For example, Ear
 
 To simulate circular orbits and verify Kepler's Third Law, we can implement a Python script. Below is a simple example using Python with Matplotlib for visualization.
 
-![alt text][def]
+![alt text](image-2.png)
 
 ## Conclusion
 

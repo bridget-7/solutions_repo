@@ -51,72 +51,7 @@ For our simulation, we will define the following initial conditions:
 
 Below is a Python script that simulates the motion of a payload released from a moving rocket near Earth. The script uses the Euler method to compute the trajectory based on the initial conditions.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Constants
-G = 6.67430e-11  # Gravitational constant in m^3/(kg*s^2)
-M = 5.972e24     # Mass of Earth in kg
-R = 6.371e6      # Radius of Earth in meters
-
-# Time parameters
-dt = 0.1  # Time step in seconds
-total_time = 600  # Total simulation time in seconds
-
-# Initial conditions
-# Position (x0, y0) in meters
-x0 = R + 1000  # 1000 meters above the surface
-y0 = 0
-
-# Initial velocity (vx0, vy0) in m/s
-vx0 = 5000  # Horizontal velocity
-vy0 = 0     # Vertical velocity
-
-# Lists to store trajectory data
-x_positions = []
-y_positions = []
-
-# Initial state
-x, y = x0, y0
-vx, vy = vx0, vy0
-
-# Simulation loop
-for _ in range(int(total_time / dt)):
-    # Calculate distance from the center of Earth
-    r = np.sqrt(x**2 + y**2)
-    
-    # Calculate gravitational force components
-    g = G * M / r**2
-    ax = -g * (x / r)  # Acceleration in x direction
-    ay = -g * (y / r)  # Acceleration in y direction
-    
-    # Update velocities
-    vx += ax * dt
-    vy += ay * dt
-    
-    # Update positions
-    x += vx * dt
-    y += vy * dt
-    
-    # Store positions
-    x_positions.append(x)
-    y_positions.append(y)
-
-# Plotting the trajectory
-plt.figure(figsize=(10, 6))
-plt.plot(x_positions, y_positions, label='Payload Trajectory')
-plt.plot(0, 0, 'ro', label='Earth')
-plt.title('Trajectory of a Payload Released from a Moving Rocket')
-plt.xlabel('X Position (m)')
-plt.ylabel('Y Position (m)')
-plt.axhline(0, color='black', lw=0.5, ls='--')
-plt.axvline(0, color='black', lw=0.5, ls='--')
-plt.axis('equal')
-plt.grid()
-plt.legend()
-plt.show()
-```
+![alt text](image-3.png)
 
 ## Discussion of Trajectories
 
