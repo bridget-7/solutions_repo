@@ -70,6 +70,3 @@ For payloads intended to escape Earth's gravitational influence, they must be re
 ## Conclusion
 
 The analysis of trajectories for a payload released from a moving rocket near Earth reveals the complexities of orbital mechanics and gravitational influences. By simulating the motion of the payload under Earth's gravity, we gain insights into various space mission scenarios, including satellite deployment, reentry, and escape trajectories. This understanding is essential for successful space exploration and mission planning.
-```
-
-You can copy and paste this Markdown document into Visual Studio or any Markdown editor to view it properly formatted. The Python script included can be run in a Python environment with the necessary libraries installed (NumPy and Matplotlib) to visualize the payload trajectories near Earth.

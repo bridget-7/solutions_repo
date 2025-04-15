@@ -96,5 +96,3 @@ Let's calculate the first, second, and third cosmic velocities for Earth, Mars, 
 
 The first, second, and third cosmic velocities are fundamental concepts in astrophysics that define the thresholds for orbital motion, escape from gravitational influence, and interstellar travel. By calculating and visualizing these velocities for different celestial bodies, we gain insights into the dynamics of space exploration and the challenges associated with launching missions beyond our planet.
 ```
-
-You can copy and paste this Markdown document into Visual Studio or any Markdown editor to view it properly formatted. The Python script included can be run in a Python environment with the necessary libraries installed (NumPy and Matplotlib) to visualize the cosmic velocities for Earth, Mars, and Jupiter.
