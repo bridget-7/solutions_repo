@@ -1,3 +1,4 @@
+# Problem 1
 # Projectile Motion: A Comprehensive Analysis
 
 ## 1. Theoretical Foundation
