@@ -78,6 +78,38 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithm-description">Algorithm Description</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#pseudocode">Pseudocode</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#explanation-of-the-algorithm">Explanation of the Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-in-python">Implementation in Python</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#handling-complex-circuit-configurations">Handling Complex Circuit Configurations</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-1-simple-series">Example 1: Simple Series</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#example-2-simple-parallel">Example 2: Simple Parallel</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#example-3-nested-configurations">Example 3: Nested Configurations</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#efficiency-analysis">Efficiency Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#potential-improvements">Potential Improvements</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -171,7 +203,132 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<p>Problem 1</p>
+<h1 id="calculating-equivalent-resistance-using-graph-theory">Calculating Equivalent Resistance Using Graph Theory</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Calculating equivalent resistance is a fundamental problem in electrical circuits, essential for understanding and designing efficient systems. Traditional methods involve iteratively applying series and parallel resistor rules, which can become cumbersome for complex circuits with many components. Graph theory offers a powerful alternative, providing a structured and algorithmic way to analyze circuits.</p>
+<p>By representing a circuit as a graph—where nodes correspond to junctions and edges represent resistors with weights equal to their resistance values—we can systematically simplify even the most intricate networks. This method not only streamlines calculations but also opens the door to automated analysis, making it particularly useful in modern applications like circuit simulation software, optimization problems, and network design.</p>
+<h2 id="algorithm-description">Algorithm Description</h2>
+<h3 id="overview">Overview</h3>
+<p>The algorithm for calculating the equivalent resistance using graph theory involves the following steps:
+1. <strong>Graph Representation</strong>: Represent the circuit as a graph with nodes and edges.
+2. <strong>Identify Series and Parallel Connections</strong>: Detect series and parallel resistor configurations.
+3. <strong>Iterative Reduction</strong>: Simplify the graph iteratively until a single equivalent resistance is obtained.
+4. <strong>Handle Nested Combinations</strong>: Ensure the algorithm can manage nested series and parallel connections.</p>
+<h3 id="pseudocode">Pseudocode</h3>
+<p>Below is the pseudocode for the algorithm:</p>
+<pre><code>function calculate_equivalent_resistance(graph):
+    while graph has more than one node:
+        for each edge (u, v) in graph:
+            if u and v are in series:
+                R_eq = R_u + R_v
+                replace u and v with a new node w in graph
+                update graph with edge (w, R_eq)
+                break
+            else if u and v are in parallel:
+                R_eq = (R_u * R_v) / (R_u + R_v)
+                replace u and v with a new node w in graph
+                update graph with edge (w, R_eq)
+                break
+    return resistance of the remaining node in graph
+</code></pre>
+<h3 id="explanation-of-the-algorithm">Explanation of the Algorithm</h3>
+<ol>
+<li>
+<p><strong>Graph Representation</strong>: The circuit is represented as a graph where each resistor is an edge with a weight equal to its resistance value. Nodes represent junctions where resistors connect.</p>
+</li>
+<li>
+<p><strong>Identify Series and Parallel Connections</strong>:</p>
+</li>
+<li><strong>Series Connection</strong>: Two resistors <span class="arithmatex">\( R_1 \)</span> and <span class="arithmatex">\( R_2 \)</span> are in series if they are connected end-to-end. The equivalent resistance is given by:
+     [
+     R_{eq} = R_1 + R_2
+     ]</li>
+<li>
+<p><strong>Parallel Connection</strong>: Two resistors <span class="arithmatex">\( R_1 \)</span> and <span class="arithmatex">\( R_2 \)</span> are in parallel if they are connected to the same two nodes. The equivalent resistance is given by:
+     [
+     R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2}
+     ]</p>
+</li>
+<li>
+<p><strong>Iterative Reduction</strong>: The algorithm iteratively checks for series and parallel connections. When a connection is found, it calculates the equivalent resistance and replaces the connected nodes with a new node representing the equivalent resistor.</p>
+</li>
+<li>
+<p><strong>Handle Nested Combinations</strong>: The algorithm continues to simplify the graph until only one node remains, which represents the total equivalent resistance of the circuit.</p>
+</li>
+</ol>
+<h2 id="implementation-in-python">Implementation in Python</h2>
+<p>Below is a Python implementation of the algorithm using the <code>networkx</code> library for graph manipulation.</p>
+<pre><code class="language-python">import networkx as nx
+
+def calculate_equivalent_resistance(graph):
+    while len(graph.nodes) &gt; 1:
+        for u, v in list(graph.edges):
+            # Check for series connection
+            if graph.degree[u] == 1 and graph.degree[v] == 1:
+                R_u = graph[u][v]['resistance']
+                # Remove the edge and create a new node
+                graph.remove_edge(u, v)
+                new_node = f"{u}-{v}"
+                graph.add_node(new_node)
+                graph.add_edge(new_node, u, resistance=R_u)
+                break
+
+            # Check for parallel connection
+            elif graph.degree[u] &gt; 1 and graph.degree[v] &gt; 1:
+                R_u = graph[u][v]['resistance']
+                # Find the other nodes connected to u and v
+                neighbors_u = list(graph.neighbors(u))
+                neighbors_v = list(graph.neighbors(v))
+                for n_u in neighbors_u:
+                    for n_v in neighbors_v:
+                        if n_u != v and n_v != u:
+                            R_v = graph[n_u][n_v]['resistance']
+                            R_eq = (R_u * R_v) / (R_u + R_v)
+                            graph.remove_edge(u, v)
+                            new_node = f"{u}-{v}"
+                            graph.add_node(new_node)
+                            graph.add_edge(new_node, n_u, resistance=R_eq)
+                            break
+                break
+
+    # Return the equivalent resistance of the remaining node
+    return graph.nodes[list(graph.nodes)[0]]['resistance']
+
+# Example usage
+G = nx.Graph()
+G.add_edge('A', 'B', resistance=4)
+G.add_edge('B', 'C', resistance=6)
+G.add_edge('A', 'C', resistance=12)
+
+equiv_resistance = calculate_equivalent_resistance(G)
+print(f"Equivalent Resistance: {equiv_resistance} Ohms")
+</code></pre>
+<h2 id="handling-complex-circuit-configurations">Handling Complex Circuit Configurations</h2>
+<h3 id="example-1-simple-series">Example 1: Simple Series</h3>
+<p>For a circuit with resistors <span class="arithmatex">\( R_1 = 4 \, \Omega \)</span> and <span class="arithmatex">\( R_2 = 6 \, \Omega \)</span> in series:
+- The algorithm will identify the series connection and compute:
+  [
+  R_{eq} = R_1 + R_2 = 4 + 6 = 10 \, \Omega
+  ]</p>
+<h3 id="example-2-simple-parallel">Example 2: Simple Parallel</h3>
+<p>For a circuit with resistors <span class="arithmatex">\( R_1 = 4 \, \Omega \)</span> and <span class="arithmatex">\( R_2 = 6 \, \Omega \)</span> in parallel:
+- The algorithm will identify the parallel connection and compute:
+  [
+  R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2} = \frac{4 \cdot 6}{4 + 6} = 2.4 \, \Omega
+  ]</p>
+<h3 id="example-3-nested-configurations">Example 3: Nested Configurations</h3>
+<p>For a circuit with a combination of series and parallel resistors:
+- The algorithm will iteratively reduce the graph, handling nested configurations by applying series and parallel rules until a single equivalent resistance is obtained.</p>
+<h2 id="efficiency-analysis">Efficiency Analysis</h2>
+<p>The algorithm's efficiency depends on the number of nodes and edges in the graph. The worst-case scenario occurs when the graph is fully connected, leading to a time complexity of <span class="arithmatex">\( O(n^2) \)</span> for edge checks. However, the use of graph traversal methods like Depth-First Search (DFS) can optimize the identification of series and parallel connections.</p>
+<h3 id="potential-improvements">Potential Improvements</h3>
+<ul>
+<li><strong>Optimized Traversal</strong>: Implementing more efficient traversal algorithms can reduce the time complexity.</li>
+<li><strong>Dynamic Updates</strong>: Using data structures that allow for dynamic updates can improve performance during graph modifications.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Using graph theory to calculate equivalent resistance provides a structured and efficient approach to analyzing electrical circuits. The algorithm described here can handle complex configurations, making it a valuable tool for engineers and researchers in the field of electrical engineering.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
