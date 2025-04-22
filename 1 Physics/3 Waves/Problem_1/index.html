@@ -66,6 +66,22 @@
 <ul class="current">
 <li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-select-a-regular-polygon">Step 1: Select a Regular Polygon</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-position-the-sources">Step 2: Position the Sources</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-wave-equations">Step 3: Wave Equations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-superposition-of-waves">Step 4: Superposition of Waves</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-analyze-interference-patterns">Step 5: Analyze Interference Patterns</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-6-visualization">Step 6: Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -171,7 +187,90 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<p>Problem 1</p>
+<h1 id="analyzing-interference-patterns-from-point-sources-at-the-vertices-of-a-regular-polygon">Analyzing Interference Patterns from Point Sources at the Vertices of a Regular Polygon</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In this analysis, we will explore the interference patterns formed by waves emitted from point sources located at the vertices of a regular polygon. We will choose a <strong>square</strong> as our polygon for simplicity and clarity. The principles of wave superposition will be applied to understand how these waves interact, leading to regions of constructive and destructive interference.</p>
+<h2 id="step-1-select-a-regular-polygon">Step 1: Select a Regular Polygon</h2>
+<p>We will select a <strong>square</strong> as our regular polygon. A square has four vertices, which will serve as the locations of our point wave sources.</p>
+<h2 id="step-2-position-the-sources">Step 2: Position the Sources</h2>
+<p>The vertices of the square can be positioned in a Cartesian coordinate system as follows:
+- Source 1: <span class="arithmatex">\( (1, 1) \)</span>
+- Source 2: <span class="arithmatex">\( (1, -1) \)</span>
+- Source 3: <span class="arithmatex">\( (-1, -1) \)</span>
+- Source 4: <span class="arithmatex">\( (-1, 1) \)</span></p>
+<h2 id="step-3-wave-equations">Step 3: Wave Equations</h2>
+<p>The wave emitted from each source can be described by the following equation:</p>
+<div class="arithmatex">\[
+u_i(x, y, t) = A \sin(k r_i - \omega t + \phi)
+\]</div>
+<p>where:
+- <span class="arithmatex">\( A \)</span> is the amplitude of the wave.
+- <span class="arithmatex">\( k = \frac{2\pi}{\lambda} \)</span> is the wave number, related to the wavelength <span class="arithmatex">\( \lambda \)</span>.
+- <span class="arithmatex">\( \omega = 2\pi f \)</span> is the angular frequency, related to the frequency <span class="arithmatex">\( f \)</span>.
+- <span class="arithmatex">\( r_i \)</span> is the distance from the source <span class="arithmatex">\( i \)</span> to the point <span class="arithmatex">\( (x, y) \)</span>.
+- <span class="arithmatex">\( \phi \)</span> is the initial phase (assumed to be zero for simplicity).</p>
+<p>The distance <span class="arithmatex">\( r_i \)</span> from each source to a point <span class="arithmatex">\( (x, y) \)</span> is given by:</p>
+<div class="arithmatex">\[
+r_i = \sqrt{(x - x_i)^2 + (y - y_i)^2}
+\]</div>
+<h2 id="step-4-superposition-of-waves">Step 4: Superposition of Waves</h2>
+<p>The total displacement <span class="arithmatex">\( u(x, y, t) \)</span> at any point on the water surface due to the superposition of the four waves is given by:</p>
+<div class="arithmatex">\[
+u(x, y, t) = \sum_{i=1}^{4} u_i(x, y, t)
+\]</div>
+<p>This can be expanded as:</p>
+<div class="arithmatex">\[
+u(x, y, t) = A \sum_{i=1}^{4} \sin(k r_i - \omega t)
+\]</div>
+<h2 id="step-5-analyze-interference-patterns">Step 5: Analyze Interference Patterns</h2>
+<p>To analyze the interference patterns, we will compute the total displacement <span class="arithmatex">\( u(x, y, t) \)</span> for a grid of points on the water surface over a specified time interval. We will identify regions of constructive interference (where <span class="arithmatex">\( u \)</span> is maximized) and destructive interference (where <span class="arithmatex">\( u \)</span> is minimized).</p>
+<h2 id="step-6-visualization">Step 6: Visualization</h2>
+<p>We will use Python with Matplotlib to visualize the interference patterns. Below is the implementation of the simulation.</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+A = 1          # Amplitude
+lambda_ = 1    # Wavelength
+k = 2 * np.pi / lambda_  # Wave number
+f = 1          # Frequency
+omega = 2 * np.pi * f  # Angular frequency
+phi = 0        # Initial phase
+
+# Source positions (vertices of the square)
+sources = np.array([[1, 1], [1, -1], [-1, -1], [-1, 1]])
+
+# Create a grid of points
+x = np.linspace(-2, 2, 400)
+y = np.linspace(-2, 2, 400)
+X, Y = np.meshgrid(x, y)
+
+# Time variable
+t = 0  # You can change this to see different time snapshots
+
+# Calculate total displacement
+U = np.zeros(X.shape)
+
+for source in sources:
+    r = np.sqrt((X - source[0])**2 + (Y - source[1])**2)
+    U += A * np.sin(k * r - omega * t + phi)
+
+# Plotting the interference pattern
+plt.figure(figsize=(10, 8))
+plt.contourf(X, Y, U, levels=100, cmap='RdBu')
+plt.colorbar(label='Displacement')
+plt.title('Interference Pattern from Point Sources at Vertices of a Square')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.axhline(0, color='black', lw=0.5, ls='--')
+plt.axvline(0, color='black', lw=0.5, ls='--')
+plt.grid()
+plt.show()
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>The simulation above illustrates the interference patterns created by waves emitted from the vertices of a square. The regions of constructive interference (where the wave amplitudes reinforce each other) appear as bright areas, while regions of destructive interference (where the wave amplitudes cancel each other) appear as dark areas. This analysis provides a clear visual representation of wave superposition and enhances our understanding of wave behavior in a coherent system.</p>
+<p>By adjusting parameters such as amplitude, wavelength, and frequency, one can further explore the dynamics of wave interference in various configurations.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
