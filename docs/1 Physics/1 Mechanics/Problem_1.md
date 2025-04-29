@@ -8,14 +8,14 @@
 Projectile motion can be analyzed using the equations of motion derived from Newton's laws. We consider a projectile launched with an initial velocity \( v_0 \) at an angle \( \theta \) from the horizontal. The motion can be decomposed into horizontal and vertical components.
 
 - **Horizontal Motion**:
-  \[
+  $$
   x(t) = v_{0x} t = v_0 \cos(\theta) t
-  \]
+  $$
 
 - **Vertical Motion**:
-  \[
+  $$
   y(t) = v_{0y} t - \frac{1}{2} g t^2 = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-  \]
+  $$
   where \( g \) is the acceleration due to gravity.
 
 ### Family of Solutions
@@ -23,27 +23,27 @@ Projectile motion can be analyzed using the equations of motion derived from New
 The equations above describe a family of solutions based on the initial conditions \( v_0 \) and \( \theta \). By varying these parameters, we can observe different trajectories. The time of flight \( T \) until the projectile returns to the same vertical level can be derived from the vertical motion equation:
 
 Setting \( y(T) = 0 \):
-\[
+$$
 0 = v_0 \sin(\theta) T - \frac{1}{2} g T^2
-\]
+$$
 This gives:
-\[
+$$
 T = \frac{2 v_0 \sin(\theta)}{g}
-\]
+$$
 
 The horizontal range \( R \) can then be calculated as:
-\[
+$$
 R = x(T) = v_0 \cos(\theta) T = \frac{v_0^2 \sin(2\theta)}{g}
-\]
+$$
 
 ## 2. Analysis of the Range
 
 ### Dependence on Angle of Projection
 
 The range \( R \) is maximized when \( \sin(2\theta) \) is maximized, which occurs at \( \theta = 45^\circ \). Thus, the relationship between the angle of projection and the range is given by:
-\[
+$$
 R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
-\]
+$$
 
 ### Influence of Other Parameters
 
@@ -56,9 +56,9 @@ R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
 
 1. **Uneven Terrain**: The equations can be adapted to account for different launch and landing heights, requiring adjustments to the vertical motion equation.
 2. **Air Resistance**: Incorporating drag introduces a non-linear differential equation, complicating the analysis. The drag force can be modeled as:
-   \[
+   $$
    F_d = -\frac{1}{2} C_d \rho A v^2
-   \]
+   $$
    where \( C_d \) is the drag coefficient, \( \rho \) is the air density, \( A \) is the cross-sectional area, and \( v \) is the velocity.
 
 ## 4. Implementation
