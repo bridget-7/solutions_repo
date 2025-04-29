@@ -53,48 +53,7 @@ To analyze the interference patterns, we will compute the total displacement \( 
 ## Step 6: Visualization
 We will use Python with Matplotlib to visualize the interference patterns. Below is the implementation of the simulation.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Parameters
-A = 1          # Amplitude
-lambda_ = 1    # Wavelength
-k = 2 * np.pi / lambda_  # Wave number
-f = 1          # Frequency
-omega = 2 * np.pi * f  # Angular frequency
-phi = 0        # Initial phase
-
-# Source positions (vertices of the square)
-sources = np.array([[1, 1], [1, -1], [-1, -1], [-1, 1]])
-
-# Create a grid of points
-x = np.linspace(-2, 2, 400)
-y = np.linspace(-2, 2, 400)
-X, Y = np.meshgrid(x, y)
-
-# Time variable
-t = 0  # You can change this to see different time snapshots
-
-# Calculate total displacement
-U = np.zeros(X.shape)
-
-for source in sources:
-    r = np.sqrt((X - source[0])**2 + (Y - source[1])**2)
-    U += A * np.sin(k * r - omega * t + phi)
-
-# Plotting the interference pattern
-plt.figure(figsize=(10, 8))
-plt.contourf(X, Y, U, levels=100, cmap='RdBu')
-plt.colorbar(label='Displacement')
-plt.title('Interference Pattern from Point Sources at Vertices of a Square')
-plt.xlabel('X-axis')
-plt.ylabel('Y-axis')
-plt.axhline(0, color='black', lw=0.5, ls='--')
-plt.axvline(0, color='black', lw=0.5, ls='--')
-plt.grid()
-plt.show()
-```
+![alt text](image-1.png)
 
 ## Conclusion
 The simulation above illustrates the interference patterns created by waves emitted from the vertices of a square. The regions of constructive interference (where the wave amplitudes reinforce each other) appear as bright areas, while regions of destructive interference (where the wave amplitudes cancel each other) appear as dark areas. This analysis provides a clear visual representation of wave superposition and enhances our understanding of wave behavior in a coherent system.
