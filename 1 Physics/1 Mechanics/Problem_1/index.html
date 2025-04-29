@@ -179,38 +179,38 @@
 <ul>
 <li>
 <p><strong>Horizontal Motion</strong>:
-  [
+  $$
   x(t) = v_{0x} t = v_0 \cos(\theta) t
-  ]</p>
+  $$</p>
 </li>
 <li>
 <p><strong>Vertical Motion</strong>:
-  [
+  $$
   y(t) = v_{0y} t - \frac{1}{2} g t^2 = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-  ]
+  $$
   where <span class="arithmatex">\( g \)</span> is the acceleration due to gravity.</p>
 </li>
 </ul>
 <h3 id="family-of-solutions">Family of Solutions</h3>
 <p>The equations above describe a family of solutions based on the initial conditions <span class="arithmatex">\( v_0 \)</span> and <span class="arithmatex">\( \theta \)</span>. By varying these parameters, we can observe different trajectories. The time of flight <span class="arithmatex">\( T \)</span> until the projectile returns to the same vertical level can be derived from the vertical motion equation:</p>
 <p>Setting <span class="arithmatex">\( y(T) = 0 \)</span>:
-[
+$$
 0 = v_0 \sin(\theta) T - \frac{1}{2} g T^2
-]
+$$
 This gives:
-[
+$$
 T = \frac{2 v_0 \sin(\theta)}{g}
-]</p>
+$$</p>
 <p>The horizontal range <span class="arithmatex">\( R \)</span> can then be calculated as:
-[
+$$
 R = x(T) = v_0 \cos(\theta) T = \frac{v_0^2 \sin(2\theta)}{g}
-]</p>
+$$</p>
 <h2 id="2-analysis-of-the-range">2. Analysis of the Range</h2>
 <h3 id="dependence-on-angle-of-projection">Dependence on Angle of Projection</h3>
 <p>The range <span class="arithmatex">\( R \)</span> is maximized when <span class="arithmatex">\( \sin(2\theta) \)</span> is maximized, which occurs at <span class="arithmatex">\( \theta = 45^\circ \)</span>. Thus, the relationship between the angle of projection and the range is given by:
-[
+$$
 R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
-]</p>
+$$</p>
 <h3 id="influence-of-other-parameters">Influence of Other Parameters</h3>
 <ul>
 <li><strong>Initial Velocity <span class="arithmatex">\( v_0 \)</span></strong>: The range increases with the square of the initial velocity. Doubling the initial velocity quadruples the range.</li>
@@ -221,9 +221,9 @@ R(\theta) = \frac{v_0^2 \sin(2\theta)}{g}
 <ol>
 <li><strong>Uneven Terrain</strong>: The equations can be adapted to account for different launch and landing heights, requiring adjustments to the vertical motion equation.</li>
 <li><strong>Air Resistance</strong>: Incorporating drag introduces a non-linear differential equation, complicating the analysis. The drag force can be modeled as:
-   [
+   $$
    F_d = -\frac{1}{2} C_d \rho A v^2
-   ]
+   $$
    where <span class="arithmatex">\( C_d \)</span> is the drag coefficient, <span class="arithmatex">\( \rho \)</span> is the air density, <span class="arithmatex">\( A \)</span> is the cross-sectional area, and <span class="arithmatex">\( v \)</span> is the velocity.</li>
 </ol>
 <h2 id="4-implementation">4. Implementation</h2>
