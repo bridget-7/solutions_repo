@@ -1,4 +1,4 @@
-# Problem 
+# Problem 2
 # Forced Damped Pendulum: A Comprehensive Analysis
 
 ## 1. Theoretical Foundation
