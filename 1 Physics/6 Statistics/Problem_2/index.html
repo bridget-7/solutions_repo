@@ -172,6 +172,78 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-2">Problem 2</h1>
+<h1 id="estimating-pi-using-monte-carlo-methods">Estimating Pi Using Monte Carlo Methods</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Monte Carlo simulations are a powerful computational technique that leverages randomness to solve problems or estimate values. One of the most elegant applications of Monte Carlo methods is estimating the value of <span class="arithmatex">\( \pi \)</span> through geometric probability. By randomly generating points and analyzing their positions relative to geometric shapes, we can approximate <span class="arithmatex">\( \pi \)</span> in an intuitive and visually engaging manner. This document will explore two methods for estimating <span class="arithmatex">\( \pi \)</span>: using a circle and Buffon’s Needle.</p>
+<h2 id="part-1-estimating-pi-using-a-circle">Part 1: Estimating <span class="arithmatex">\( \pi \)</span> Using a Circle</h2>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
+<p>To estimate <span class="arithmatex">\( \pi \)</span> using a circle, we can utilize the relationship between the area of a circle and the area of a square. </p>
+<ul>
+<li><strong>Unit Circle</strong>: The area of a unit circle (radius = 1) is given by:</li>
+</ul>
+<div class="arithmatex">\[
+A_{\text{circle}} = \pi r^2 = \pi \cdot 1^2 = \pi
+\]</div>
+<ul>
+<li><strong>Bounding Square</strong>: The area of the square that bounds the unit circle (with side length 2) is:</li>
+</ul>
+<div class="arithmatex">\[
+A_{\text{square}} = (2r)^2 = (2 \cdot 1)^2 = 4
+\]</div>
+<p>The ratio of the area of the circle to the area of the square is:</p>
+<div class="arithmatex">\[
+\frac{A_{\text{circle}}}{A_{\text{square}}} = \frac{\pi}{4}
+\]</div>
+<p>If we randomly generate points within the square, the ratio of points that fall inside the circle to the total number of points will approximate this ratio:</p>
+<div class="arithmatex">\[
+\frac{\text{Number of points inside the circle}}{\text{Total number of points}} \approx \frac{\pi}{4}
+\]</div>
+<p>From this, we can derive the formula for estimating <span class="arithmatex">\( \pi \)</span>:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \frac{\text{Number of points inside the circle}}{\text{Total number of points}}
+\]</div>
+<h3 id="2-simulation">2. Simulation</h3>
+<p>We will generate random points in a 2D square bounding a unit circle and count how many fall inside the circle.</p>
+<h3 id="3-visualization">3. Visualization</h3>
+<p>We will create a plot showing the randomly generated points, distinguishing those inside and outside the circle.</p>
+<p><img alt="alt text" src="image-4.png"/></p>
+<h3 id="4-analysis">4. Analysis</h3>
+<p>To investigate how the accuracy of the estimate improves as the number of points increases, we can run the simulation multiple times with increasing sample sizes and record the estimates of <span class="arithmatex">\( \pi \)</span>.</p>
+<p><img alt="alt text" src="image-5.png"/></p>
+<h2 id="part-2-estimating-pi-using-buffons-needle">Part 2: Estimating <span class="arithmatex">\( \pi \)</span> Using Buffon’s Needle</h2>
+<h3 id="1-theoretical-foundation_1">1. Theoretical Foundation</h3>
+<p>Buffon’s Needle problem provides another method for estimating <span class="arithmatex">\( \pi \)</span>. The problem involves dropping a needle of length <span class="arithmatex">\( L \)</span> onto a plane with parallel lines spaced <span class="arithmatex">\( D \)</span> apart. The probability <span class="arithmatex">\( P \)</span> that the needle crosses a line is given by:</p>
+<div class="arithmatex">\[
+P = \frac{2L}{\pi D}
+\]</div>
+<p>From this, we can derive the formula for estimating <span class="arithmatex">\( \pi \)</span>:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2L \cdot N}{D \cdot C}
+\]</div>
+<p>where:
+- <span class="arithmatex">\( N \)</span> is the total number of needle drops,
+- <span class="arithmatex">\( C \)</span> is the number of times the needle crosses a line.</p>
+<h3 id="2-simulation_1">2. Simulation</h3>
+<p>We will simulate the random dropping of a needle on a plane with parallel lines and count how many times the needle crosses a line.</p>
+<h3 id="4-analysis_1">4. Analysis</h3>
+<p>To explore how the number of needle drops affects the estimate’s accuracy, we can run the simulation multiple times with increasing sample sizes and record the estimates of <span class="arithmatex">\( \pi \)</span>.</p>
+<p><img alt="alt text" src="image-6.png"/></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this document, we explored two methods for estimating <span class="arithmatex">\( \pi \)</span> using Monte Carlo simulations: the circle-based method and Buffon’s Needle. Both methods demonstrate the power of randomness in estimating mathematical constants and provide insights into convergence rates and computational efficiency.</p>
+<h3 id="comparison-of-methods">Comparison of Methods</h3>
+<ul>
+<li><strong>Circle-Based Method</strong>: </li>
+<li>Simpler to implement and visualize.</li>
+<li>
+<p>Convergence is generally faster with larger sample sizes.</p>
+</li>
+<li>
+<p><strong>Buffon’s Needle</strong>: </p>
+</li>
+<li>More complex due to geometric considerations.</li>
+<li>Provides an interesting historical perspective on probability and geometry.</li>
+</ul>
+<p>Both methods highlight the versatility of Monte Carlo simulations in solving complex problems and estimating values through randomness.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
