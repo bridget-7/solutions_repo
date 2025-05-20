@@ -172,95 +172,88 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<h1 id="simulating-the-effects-of-the-lorentz-force">Simulating the Effects of the Lorentz Force</h1>
-<h2 id="1-exploration-of-applications">1. Exploration of Applications</h2>
-<p>The Lorentz force is a fundamental concept in electromagnetism that describes the force experienced by a charged particle moving through electric and magnetic fields. The force can be expressed mathematically as:</p>
-<div class="arithmatex">\[
-\mathbf{F} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
-\]</div>
-<p>where:
-- <span class="arithmatex">\( \mathbf{F} \)</span> is the Lorentz force,
-- <span class="arithmatex">\( q \)</span> is the charge of the particle,
-- <span class="arithmatex">\( \mathbf{E} \)</span> is the electric field,
-- <span class="arithmatex">\( \mathbf{v} \)</span> is the velocity of the particle,
-- <span class="arithmatex">\( \mathbf{B} \)</span> is the magnetic field.</p>
-<h3 id="key-systems-utilizing-the-lorentz-force">Key Systems Utilizing the Lorentz Force</h3>
+<h1 id="calculating-equivalent-resistance-using-graph-theory">Calculating Equivalent Resistance Using Graph Theory</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Calculating equivalent resistance in electrical circuits is a fundamental task in electrical engineering and physics. Traditional methods often involve tedious calculations using series and parallel resistor rules. However, by employing graph theory, we can represent circuits as graphs, where nodes correspond to junctions and edges represent resistors with weights equal to their resistance values. This approach allows for systematic simplification of complex networks and facilitates automated analysis.</p>
+<h2 id="algorithm-description">Algorithm Description</h2>
+<p>The algorithm for calculating equivalent resistance using graph theory involves the following steps:</p>
 <ol>
 <li>
-<p><strong>Particle Accelerators</strong>: Devices like cyclotrons and synchrotrons use magnetic fields to steer and accelerate charged particles to high speeds for collision experiments or medical applications.</p>
+<p><strong>Graph Representation</strong>: Represent the circuit as a graph using an adjacency list or matrix, where each edge has a weight corresponding to the resistance value.</p>
 </li>
 <li>
-<p><strong>Mass Spectrometers</strong>: These instruments utilize the Lorentz force to separate ions based on their mass-to-charge ratio, allowing for precise identification of chemical compounds.</p>
+<p><strong>Identify Series and Parallel Connections</strong>:</p>
+</li>
+<li><strong>Series Connection</strong>: Resistors are in series if they are connected end-to-end, and the total resistance <span class="arithmatex">\( R_{\text{series}} \)</span> is given by:
+     $$
+     R_{\text{series}} = R_1 + R_2 + \ldots + R_n
+     $$</li>
+<li>
+<p><strong>Parallel Connection</strong>: Resistors are in parallel if they are connected to the same two nodes, and the total resistance <span class="arithmatex">\( R_{\text{parallel}} \)</span> is given by:
+     $$
+     \frac{1}{R_{\text{parallel}}} = \frac{1}{R_1} + \frac{1}{R_2} + \ldots + \frac{1}{R_n}
+     $$</p>
 </li>
 <li>
-<p><strong>Plasma Confinement</strong>: In fusion reactors, magnetic confinement systems use the Lorentz force to contain hot plasma, preventing it from coming into contact with reactor walls.</p>
+<p><strong>Iterative Reduction</strong>: Continuously reduce the graph by identifying series and parallel connections, replacing them with their equivalent resistances until only one equivalent resistance remains.</p>
+</li>
+<li>
+<p><strong>Handle Nested Combinations</strong>: The algorithm should recursively check for nested series and parallel combinations, ensuring that all connections are simplified.</p>
 </li>
 </ol>
-<h3 id="relevance-of-electric-and-magnetic-fields">Relevance of Electric and Magnetic Fields</h3>
-<ul>
-<li><strong>Electric Fields (<span class="arithmatex">\( \mathbf{E} \)</span>)</strong>: They exert a force on charged particles, accelerating them in the direction of the field.</li>
-<li><strong>Magnetic Fields (<span class="arithmatex">\( \mathbf{B} \)</span>)</strong>: They influence the trajectory of moving charges, causing them to move in circular or helical paths, depending on their velocity and the orientation of the field.</li>
-</ul>
-<h2 id="2-simulating-particle-motion">2. Simulating Particle Motion</h2>
-<h3 id="simulation-setup">Simulation Setup</h3>
-<p>We will implement a simulation to compute and visualize the trajectory of a charged particle under various field configurations. The simulation will cover:</p>
-<ol>
-<li>A uniform magnetic field.</li>
-<li>Combined uniform electric and magnetic fields.</li>
-<li>Crossed electric and magnetic fields.</li>
-</ol>
-<h3 id="equations-of-motion">Equations of Motion</h3>
-<p>The equations of motion for a charged particle under the influence of the Lorentz force can be expressed as:</p>
-<div class="arithmatex">\[
-\frac{d\mathbf{p}}{dt} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
-\]</div>
-<p>where <span class="arithmatex">\( \mathbf{p} \)</span> is the momentum of the particle, which can be related to its velocity <span class="arithmatex">\( \mathbf{v} \)</span> by:</p>
-<div class="arithmatex">\[
-\mathbf{p} = m\mathbf{v}
-\]</div>
-<h3 id="numerical-integration">Numerical Integration</h3>
-<p>We will use the Euler method for numerical integration to update the position and velocity of the particle over time.</p>
-<h3 id="python-implementation">Python Implementation</h3>
-<p>Below is the Python code for simulating the motion of a charged particle under the specified conditions.</p>
-<pre><code class="language-python">![alt text](image.png)
+<h3 id="pseudocode">Pseudocode</h3>
+<p>Here is the pseudocode for the algorithm:</p>
+<pre><code class="language-plaintext">function calculate_equivalent_resistance(graph):
+    while graph has more than one node:
+        for each node in graph:
+            if node has series connections:
+                replace series connections with equivalent resistance
+            if node has parallel connections:
+                replace parallel connections with equivalent resistance
+        if no changes were made in this iteration:
+            break
+    return resistance of the remaining node
+
+function replace_series_connections(node):
+    series_resistance = sum(resistances of all series resistors connected to node)
+    remove series resistors from graph
+    add new resistor with resistance = series_resistance between the nodes
+
+function replace_parallel_connections(node):
+    parallel_resistance = 1 / sum(1 / resistance of each parallel resistor connected to node)
+    remove parallel resistors from graph
+    add new resistor with resistance = parallel_resistance between the nodes
 </code></pre>
-<h2 id="3-parameter-exploration">3. Parameter Exploration</h2>
-<p>To explore how variations in parameters influence the trajectory, we can modify:</p>
-<ul>
-<li><strong>Field Strengths</strong>: Change the values of <span class="arithmatex">\( \mathbf{E} \)</span> and <span class="arithmatex">\( \mathbf{B} \)</span>.</li>
-<li><strong>Initial Particle Velocity</strong>: Adjust the initial velocity vector.</li>
-<li><strong>Charge and Mass of the Particle</strong>: Experiment with different values for <span class="arithmatex">\( q \)</span> and <span class="arithmatex">\( m \)</span>.</li>
-</ul>
-<h3 id="example-modifications">Example Modifications</h3>
+<h2 id="implementation">Implementation</h2>
+<p>We will implement the algorithm in Python using the <code>networkx</code> library to handle graph representations. The implementation will accept a circuit graph as input and output the final equivalent resistance.</p>
+<h2 id="handling-complex-circuit-configurations">Handling Complex Circuit Configurations</h2>
+<h3 id="example-1-simple-series-and-parallel-combinations">Example 1: Simple Series and Parallel Combinations</h3>
+<p>Consider a circuit with three resistors:
+- Resistor 1: 5 Ohms (in series with Resistor 2)
+- Resistor 2: 10 Ohms (in parallel with Resistor 3)
+- Resistor 3: 15 Ohms</p>
+<p>The algorithm will first combine Resistor 1 and Resistor 2 in series, then combine the result with Resistor 3 in parallel.</p>
+<p><img alt="alt text" src="../image-1.png"/></p>
+<h3 id="example-2-nested-configurations">Example 2: Nested Configurations</h3>
+<p>Consider a circuit with:
+- Resistor 1: 5 Ohms (in series with a parallel combination of Resistor 2 and Resistor 3)
+- Resistor 2: 10 Ohms
+- Resistor 3: 15 Ohms</p>
+<p>The algorithm will first calculate the equivalent resistance of Resistor 2 and Resistor 3 in parallel, then add that to Resistor 1 in series.</p>
+<p><img alt="alt text" src="../image-2.png"/></p>
+<h3 id="example-3-complex-graphs-with-multiple-cycles">Example 3: Complex Graphs with Multiple Cycles</h3>
+<p>For a more complex graph, the algorithm will iteratively reduce the graph by identifying series and parallel connections, even in the presence of cycles, until a single equivalent resistance is obtained.</p>
+<h2 id="efficiency-and-potential-improvements">Efficiency and Potential Improvements</h2>
+<h3 id="efficiency-analysis">Efficiency Analysis</h3>
+<p>The algorithm's efficiency depends on the number of nodes and edges in the graph. The iterative reduction process may require multiple passes through the graph, leading to a time complexity of <span class="arithmatex">\( O(n^2) \)</span> in the worst case, where <span class="arithmatex">\( n \)</span> is the number of nodes.</p>
+<h3 id="potential-improvements">Potential Improvements</h3>
 <ol>
-<li><strong>Increasing Magnetic Field Strength</strong>: Set <span class="arithmatex">\( B = [0.0, 0.0, 2.0] \)</span> T.</li>
-<li><strong>Adding Electric Field</strong>: Set <span class="arithmatex">\( E = [0.0, 1.0, 0.0] \)</span> V/m.</li>
-<li><strong>Changing Initial Velocity</strong>: Set <span class="arithmatex">\( initial_velocity = [1e6, 1e6, 0.0] \)</span> m/s.</li>
+<li><strong>Optimized Traversal</strong>: Implementing depth-first search (DFS) or breadth-first search (BFS) can help identify series and parallel connections more efficiently.</li>
+<li><strong>Caching Results</strong>: Storing previously computed equivalent resistances can reduce redundant calculations in complex circuits.</li>
+<li><strong>Parallel Processing</strong>: Utilizing parallel processing techniques can speed up the calculations for large circuits.</li>
 </ol>
-<h2 id="4-visualization">4. Visualization</h2>
-<p>The simulation produces a 3D plot of the particle's trajectory. The path can exhibit circular, helical, or drift motion depending on the field configurations and initial conditions.</p>
-<h3 id="physical-phenomena">Physical Phenomena</h3>
-<ul>
-<li><strong>Larmor Radius</strong>: The radius of the circular motion of the particle in a magnetic field can be calculated as:</li>
-</ul>
-<div class="arithmatex">\[
-r_L = \frac{mv}{|q|B}
-\]</div>
-<ul>
-<li><strong>Drift Velocity</strong>: In crossed fields, the particle experiences a drift velocity given by:</li>
-</ul>
-<div class="arithmatex">\[
-\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
-\]</div>
 <h2 id="conclusion">Conclusion</h2>
-<p>This simulation provides a clear understanding of the Lorentz force's effects on charged particles in various electromagnetic field configurations. The results can be related to practical systems such as cyclotrons and magnetic traps, where controlling particle motion is crucial for achieving desired outcomes.</p>
-<h3 id="suggestions-for-extension">Suggestions for Extension</h3>
-<ul>
-<li>Implement non-uniform electric and magnetic fields.</li>
-<li>Explore relativistic effects for high-speed particles.</li>
-<li>Simulate interactions between multiple charged particles.</li>
-</ul>
-<p>This Markdown document can be copied and pasted into Visual Studio for further development and testing.</p>
+<p>Using graph theory to calculate equivalent resistance provides a structured and efficient approach to analyzing electrical circuits. The algorithm described here can handle various configurations, including nested series and parallel connections, making it a versatile tool for engineers and researchers. By leveraging libraries like <code>networkx</code>, we can implement this algorithm effectively and explore complex circuit designs with ease.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
