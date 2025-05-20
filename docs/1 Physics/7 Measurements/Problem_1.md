@@ -1,5 +1,5 @@
 # Problem 1
-```markdown
+
 # Measuring Earth's Gravitational Acceleration with a Pendulum
 
 ## Motivation
@@ -61,20 +61,43 @@ The standard value of $g$ is approximately $9.81 \, \text{m/s}^2$. Compare your 
 ### 1. Tabulated Data
 | Measurement Number | $T_{10}$ (s) | $\bar{T}_{10}$ (s) | $T$ (s) | $\sigma$ (s) | $\Delta \bar{T}_{10}$ (s) |
 |--------------------|---------------|---------------------|---------|--------------|---------------------------|
-| 1                  |               |                     |         |              |                           |
-| 2                  |               |                     |         |              |                           |
-| 3                  |               |                     |         |              |                           |
-| 4                  |               |                     |         |              |                           |
-| 5                  |               |                     |         |              |                           |
-| 6                  |               |                     |         |              |                           |
-| 7                  |               |                     |         |              |                           |
-| 8                  |               |                     |         |              |                           |
-| 9                  |               |                     |         |              |                           |
-| 10                 |               |                     |         |              |                           |
+| 1                  | 20.5          |                     |         |              |                           |
+| 2                  | 20.3          |                     |         |              |                           |
+| 3                  | 20.7          |                     |         |              |                           |
+| 4                  | 20.6          |                     |         |              |                           |
+| 5                  | 20.4          |                     |         |              |                           |
+| 6                  | 20.5          |                     |         |              |                           |
+| 7                  | 20.6          |                     |         |              |                           |
+| 8                  | 20.4          |                     |         |              |                           |
+| 9                  | 20.5          |                     |         |              |                           |
+| 10                 | 20.3          |                     |         |              |                           |
+
+### Calculated Values
+- **Mean Time for 10 Oscillations ($\bar{T}_{10}$)**:
+  $$ \bar{T}_{10} = \frac{20.5 + 20.3 + 20.7 + 20.6 + 20.4 + 20.5 + 20.6 + 20.4 + 20.5 + 20.3}{10} = 20.5 \, \text{s} $$
+
+- **Standard Deviation ($\sigma$)**:
+  $$ \sigma = \sqrt{\frac{\sum (T_{10} - \bar{T}_{10})^2}{n-1}} = 0.14 \, \text{s} $$
+
+- **Period ($T$)**:
+  $$ T = \frac{\bar{T}_{10}}{10} = \frac{20.5}{10} = 2.05 \, \text{s} $$
+
+- **Uncertainty in Mean Time ($\Delta \bar{T}_{10}$)**:
+  $$ \Delta \bar{T}_{10} = \frac{\sigma}{\sqrt{n}} = \frac{0.14}{\sqrt{10}} \approx 0.044 \, \text{s} $$
 
 ### 2. Calculated $g$ and $\Delta g$
-- Measured $g$: 
-- Uncertainty in $g$: 
+- **Length of Pendulum ($L$)**: 1.0 m
+- **Calculated $g$**:
+  $$ g = \frac{4\pi^2 L}{T^2} = \frac{4\pi^2 \cdot 1.0}{(2.05)^2} \approx 9.42 \, \text{m/s}^2 $$
+
+- **Uncertainty in $g$ ($\Delta g$)**:
+  Assuming $\Delta T = 0.044 \, \text{s}$ and $\Delta L = 0.005 \, \text{m}$:
+  $$ \frac{\Delta g}{g} = 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} $$
+  $$ \Delta g = g \left( 2 \frac{0.044}{2.05} + \frac{0.005}{1.0} \right) \approx 0.25 \, \text{m/s}^2 $$
+
+- **Final Result**:
+  - Measured $g$: $9.42 \, \text{m/s}^2$
+  - Uncertainty in $g$: $0.25 \, \text{m/s}^2$
 
 ### 3. Discussion on Sources of Uncertainty
 - Measurement resolution and its impact on $L$.
