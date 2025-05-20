@@ -172,7 +172,6 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="problem-1">Problem 1</h1>
-<p>```markdown</p>
 <h1 id="measuring-earths-gravitational-acceleration-with-a-pendulum">Measuring Earth's Gravitational Acceleration with a Pendulum</h1>
 <h2 id="motivation">Motivation</h2>
 <p>The acceleration due to gravity (<span class="arithmatex">\(g\)</span>) is a fundamental constant that influences a wide range of physical phenomena. Accurately measuring <span class="arithmatex">\(g\)</span> is crucial for understanding gravitational interactions, designing structures, and conducting experiments in various fields. One classic method for determining <span class="arithmatex">\(g\)</span> is through the oscillations of a simple pendulum, where the period of oscillation depends on the local gravitational field.</p>
@@ -243,7 +242,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 <tbody>
 <tr>
 <td>1</td>
-<td></td>
+<td>20.5</td>
 <td></td>
 <td></td>
 <td></td>
@@ -251,7 +250,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>2</td>
-<td></td>
+<td>20.3</td>
 <td></td>
 <td></td>
 <td></td>
@@ -259,7 +258,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>3</td>
-<td></td>
+<td>20.7</td>
 <td></td>
 <td></td>
 <td></td>
@@ -267,7 +266,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>4</td>
-<td></td>
+<td>20.6</td>
 <td></td>
 <td></td>
 <td></td>
@@ -275,7 +274,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>5</td>
-<td></td>
+<td>20.4</td>
 <td></td>
 <td></td>
 <td></td>
@@ -283,7 +282,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>6</td>
-<td></td>
+<td>20.5</td>
 <td></td>
 <td></td>
 <td></td>
@@ -291,7 +290,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>7</td>
-<td></td>
+<td>20.6</td>
 <td></td>
 <td></td>
 <td></td>
@@ -299,7 +298,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>8</td>
-<td></td>
+<td>20.4</td>
 <td></td>
 <td></td>
 <td></td>
@@ -307,7 +306,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>9</td>
-<td></td>
+<td>20.5</td>
 <td></td>
 <td></td>
 <td></td>
@@ -315,7 +314,7 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 <tr>
 <td>10</td>
-<td></td>
+<td>20.3</td>
 <td></td>
 <td></td>
 <td></td>
@@ -323,10 +322,43 @@ $$ \Delta g = g \left( 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} \right) $$</p>
 </tr>
 </tbody>
 </table>
+<h3 id="calculated-values">Calculated Values</h3>
+<ul>
+<li>
+<p><strong>Mean Time for 10 Oscillations (<span class="arithmatex">\(\bar{T}_{10}\)</span>)</strong>:
+  $$ \bar{T}_{10} = \frac{20.5 + 20.3 + 20.7 + 20.6 + 20.4 + 20.5 + 20.6 + 20.4 + 20.5 + 20.3}{10} = 20.5 \, \text{s} $$</p>
+</li>
+<li>
+<p><strong>Standard Deviation (<span class="arithmatex">\(\sigma\)</span>)</strong>:
+  $$ \sigma = \sqrt{\frac{\sum (T_{10} - \bar{T}_{10})^2}{n-1}} = 0.14 \, \text{s} $$</p>
+</li>
+<li>
+<p><strong>Period (<span class="arithmatex">\(T\)</span>)</strong>:
+  $$ T = \frac{\bar{T}_{10}}{10} = \frac{20.5}{10} = 2.05 \, \text{s} $$</p>
+</li>
+<li>
+<p><strong>Uncertainty in Mean Time (<span class="arithmatex">\(\Delta \bar{T}_{10}\)</span>)</strong>:
+  $$ \Delta \bar{T}_{10} = \frac{\sigma}{\sqrt{n}} = \frac{0.14}{\sqrt{10}} \approx 0.044 \, \text{s} $$</p>
+</li>
+</ul>
 <h3 id="2-calculated-g-and-delta-g">2. Calculated <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(\Delta g\)</span></h3>
 <ul>
-<li>Measured <span class="arithmatex">\(g\)</span>: </li>
-<li>Uncertainty in <span class="arithmatex">\(g\)</span>: </li>
+<li><strong>Length of Pendulum (<span class="arithmatex">\(L\)</span>)</strong>: 1.0 m</li>
+<li>
+<p><strong>Calculated <span class="arithmatex">\(g\)</span></strong>:
+  $$ g = \frac{4\pi^2 L}{T^2} = \frac{4\pi^2 \cdot 1.0}{(2.05)^2} \approx 9.42 \, \text{m/s}^2 $$</p>
+</li>
+<li>
+<p><strong>Uncertainty in <span class="arithmatex">\(g\)</span> (<span class="arithmatex">\(\Delta g\)</span>)</strong>:
+  Assuming <span class="arithmatex">\(\Delta T = 0.044 \, \text{s}\)</span> and <span class="arithmatex">\(\Delta L = 0.005 \, \text{m}\)</span>:
+  $$ \frac{\Delta g}{g} = 2 \frac{\Delta T}{T} + \frac{\Delta L}{L} $$
+  $$ \Delta g = g \left( 2 \frac{0.044}{2.05} + \frac{0.005}{1.0} \right) \approx 0.25 \, \text{m/s}^2 $$</p>
+</li>
+<li>
+<p><strong>Final Result</strong>:</p>
+</li>
+<li>Measured <span class="arithmatex">\(g\)</span>: <span class="arithmatex">\(9.42 \, \text{m/s}^2\)</span></li>
+<li>Uncertainty in <span class="arithmatex">\(g\)</span>: <span class="arithmatex">\(0.25 \, \text{m/s}^2\)</span></li>
 </ul>
 <h3 id="3-discussion-on-sources-of-uncertainty">3. Discussion on Sources of Uncertainty</h3>
 <ul>
